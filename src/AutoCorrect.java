@@ -10,9 +10,8 @@ public class AutoCorrect {
         ArrayList<String> stringArray = new ArrayList<String>(Arrays.asList(s.split(" ")));
         String output = "";
 
-        Pattern p = Pattern.compile("you*$");
-//        Matcher m = ;
-//        boolean b = m;
+//        Pattern p = Pattern.compile("you*$");
+        Pattern p = Pattern.compile("you*(\\W*$)");
 
 
         for (int i = 0; i < stringArray.size(); i++) {
@@ -21,7 +20,8 @@ public class AutoCorrect {
             } else if (stringArray.get(i).toLowerCase().contains(" u ")) {
                 stringArray.set(i, "your sister");
             } else if (p.matcher(stringArray.get(i).toLowerCase()).matches()) {
-                stringArray.set(i, "your sister");
+                String substring = "your sister" + p.matcher(stringArray.get(i)).group(1);
+                stringArray.set(i, substring);
             }
         }
 
@@ -31,11 +31,11 @@ public class AutoCorrect {
             stringOutput.append(stringArray.get(0));
         } else {
             for (String word2 : stringArray)
-                stringOutput.append(word2);
+                stringOutput.append(word2 + " ");
         }
 
 
 
-        return stringOutput.toString();
+        return stringOutput.toString().trim();
     }
 }

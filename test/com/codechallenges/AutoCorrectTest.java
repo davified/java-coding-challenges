@@ -28,4 +28,9 @@ public class AutoCorrectTest {
         }
     }
 
+    @Test
+    public void longStringTest() throws Exception {
+        String s = "hello youtube you are here";
+        Assert.assertEquals("hello youtube your sister are here", com.codechallenges.AutoCorrect.solution(s));
+    }
 }
